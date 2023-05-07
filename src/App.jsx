@@ -7,6 +7,7 @@ import Products from "./pages/Products";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 // const url = "https://fakestoreapi.com/products";
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
             path="/Products/:productId"
             element={<ProductDetails></ProductDetails>}
           ></Route>
-          <Route path="Login" element={<Login></Login>}></Route>
+          <Route path="cart" element={<Cart></Cart>}></Route>
           <Route path="*" element={<Error></Error>}></Route>
         </Routes>
       </BrowserRouter>

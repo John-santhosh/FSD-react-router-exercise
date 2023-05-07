@@ -5,26 +5,41 @@ import { HiStar, HiHeart } from "react-icons/hi2";
 import { useEffect } from "react";
 
 const ProductDetails = () => {
-  const { products, loading, fetchData } = useGlobalContext();
+  // const [wishListed, setWishListed] = useState(true);
+  const { products, loading, fetchData, addToCart } = useGlobalContext();
   useEffect(() => {
     fetchData();
   }, []);
+
+  function addCartItem(id) {
+    addToCart(product);
+  }
+
   const { productId } = useParams();
   if (loading) {
     return <div className="loading"></div>;
   }
   const product = products.find((product) => product.id == productId);
-  const { image, title, description, price } = product;
+  const { id, image, title, description, price, wishlists } = product;
   return (
     <div className="container">
       <article className="singleProduct">
         <div className="img-container">
-          <div className="like-container">
-            <HiHeart className="like-icon" />
-          </div>
+          <button style={{ border: "none" }}>
+            {/* className={wishlists ? "like-container liked" : "like-container"} */}
+            <div className="like-container">
+              <HiHeart className="like-icon" />
+            </div>
+          </button>
           <img src={image} alt={title} />
           <div className="order">
-            <button>ADD TO CART</button>
+            <button
+              onClick={() => {
+                addCartItem(productId);
+              }}
+            >
+              ADD TO CART
+            </button>
             <button>BUY NOW</button>
           </div>
         </div>
